@@ -4,7 +4,7 @@ __pycache__/
 *$py.class
 database.sqlite
 bbg_json
-.DS_store
+.DS_Store
 
 # C extensions
 *.so
