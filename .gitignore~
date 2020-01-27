@@ -8,6 +8,7 @@ bbg_json
 
 # C extensions
 *.so
+*~
 
 # Distribution / packaging
 .Python

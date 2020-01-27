@@ -5,7 +5,7 @@ __pycache__/
 database.sqlite
 bbg_json
 .DS_Store
-
+thumbs
 # C extensions
 *.so
 *~
