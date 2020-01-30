@@ -5,6 +5,7 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import time
 import heapq
 import json
+import numpy as np
 from pprint import pprint
 from PIL import Image
 import io
@@ -81,36 +82,40 @@ def return_n_best(N, search_string):
 
 ##### The individual mechanics score
 scores_dict = {
-    #'learning_score': 'learn',
-    #'logic_score': 'logic',
-    #'dectucive_score': 'deduc',
-    #'pattern_score': 'pattern',
+    'learning_score': 'learn',
+    'logic_score': 'logic',
+    'deductive_score': 'deduc',
+    'pattern_score': 'pattern',
     'co-operative_score': 'coop',
-    #'math_score': 'math',
-    #'memorization_score': 'memo'
+    'math_score': 'math',
+    'memorization_score': 'memo'
 }
 #best_games = heapq.nlargest(10, map(lambda g: (g['overall_score'], g['game_id']), kids_games))
 best_games = []
 games = {}
 
 for k, v in scores_dict.items():
-    best_games.extend(return_n_best(5, v))
+    games[f'{key}_games'] = return_n_best(5, v)
+    best_games.extend(games[f'{key}_games'])
     #print(k, return_n_best(10, v))
 #best_games = sorted(list(set(x[1] for x in best_games)))
 best_games = list(set(x[1] for x in best_games))
-best_games[0], best_games[1] = best_games[1], best_games[0]
+
 for id in best_games:
     games[id] = data[id]
     game = games[id]
+    game['best_comments'] = []
     for key, val in scores_dict.items():
         game[key] = new_score(game, val)
         game[f'{key}_comments'] = return_n_best_comments(game, 3 , val)
+        game['best_comments'].extend(game[f'{key}_comments'])
+    game['best_comments'] = np.random.choice(game['best_comments'], size = 3, replace = False)
     img = Image.open(f'./thumbs/{id}.jpg')
 
     img_io = io.BytesIO()
     img.save(img_io, format='png',compress_level = 1)#, quality=100)
     img_io.seek(0)
-    games[id]['img'] =  'data:image/png;base64,'+base64.b64encode(img_io.getvalue()).decode('utf-8')
+    games[id]['img'] = 'data:image/png;base64,' + base64.b64encode(img_io.getvalue()).decode('utf-8')
 games['best_games'] = best_games
 with open('data.json', 'w') as f:
     json.dump(games, f)
