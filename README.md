@@ -7,13 +7,13 @@ Most of the growth in the board game industry is driven by complex games that ad
 
 ## Implementation
 
-The code used to scrape[BoardGameGeek](https://www.boardgamegeek.com/) is `bbg_scraper.py` it downloads the top ~7000 games and 200 most recent comments for each game. Each game is stored its own  JSON file in the `bbg_json/` directory. The Schema for each JSON is as follows e.g.,
+The code used to scrape [BoardGameGeek](https://www.boardgamegeek.com/) is `bbg_scraper.py` it downloads the top ~7000 games and 200 most recent comments for each game. Each game is stored its own  JSON file in the `bbg_json/` directory. The Schema for each JSON is as follows e.g.,
 ```
 {
   name: Number Chase
   yearpublished: 2006 
-  description: "In Number Chase, a.k.a. Zahlenraten, .... Whoever first collects three cards wins!" 
-  img_url: "https://cf.geekdo-images.com/thumb/img/KXQNXgHgdJIVSy_haOPGcNn1qGY=/fit-in/200x150/pic456666.jpg"
+  description: "In Number Chase ... whoever first collects three cards wins!" 
+  img_url: "https://.../pic456666.jpg"
   user_suggested_age: 5.0 
   user_suggested_players: [
     {
