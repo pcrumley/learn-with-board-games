@@ -1,3 +1,24 @@
-# Learn With Board Games
-An insight data-project that helps parents choose board games that teach new concepts to children, and highlights what to focus on when playing games with your kids.
+# gaming-with-kids
 
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
